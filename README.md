@@ -1,4 +1,4 @@
-# apviso-mcp
+# @apviso/mcp
 
 MCP server for interacting with the [APVISO](https://apviso.com) AI-powered penetration testing platform from Claude Code, Cursor, Windsurf, Codex, and other MCP-compatible tools.
 
@@ -13,7 +13,7 @@ Go to your [APVISO dashboard](https://apviso.com) → Settings → API Keys and 
 ```bash
 claude mcp add --transport stdio apviso \
   --env APVISO_API_KEY=apvk_your_key_here \
-  -- npx -y apviso-mcp
+  -- npx -y @apviso/mcp
 ```
 
 On Windows (not WSL):
@@ -21,7 +21,7 @@ On Windows (not WSL):
 ```bash
 claude mcp add --transport stdio apviso ^
   --env APVISO_API_KEY=apvk_your_key_here ^
-  -- cmd /c npx -y apviso-mcp
+  -- cmd /c npx -y @apviso/mcp
 ```
 
 ### Alternative: manual config
@@ -34,7 +34,7 @@ Add to your `.mcp.json` (project-scoped) or `~/.claude.json` (user-scoped):
     "apviso": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "apviso-mcp"],
+      "args": ["-y", "@apviso/mcp"],
       "env": {
         "APVISO_API_KEY": "apvk_your_key_here"
       }
@@ -51,7 +51,7 @@ For team projects, use environment variable expansion in `.mcp.json` so each dev
     "apviso": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "apviso-mcp"],
+      "args": ["-y", "@apviso/mcp"],
       "env": {
         "APVISO_API_KEY": "${APVISO_API_KEY}"
       }

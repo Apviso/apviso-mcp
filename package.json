@@ -1,10 +1,11 @@
 {
-  "name": "apviso-mcp",
+  "name": "@apviso/mcp",
   "version": "0.1.0",
   "description": "MCP server for interacting with APVISO penetration testing platform",
   "type": "module",
   "bin": {
-    "apviso-mcp": "./dist/index.js"
+    "apviso-mcp": "./dist/index.js",
+    "apviso": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "files": [
