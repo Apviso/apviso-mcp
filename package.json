@@ -23,6 +23,14 @@
     "model-context-protocol"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apviso/apviso-mcp.git"
+  },
+  "homepage": "https://apviso.com",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
     "zod": "^3.24.0"

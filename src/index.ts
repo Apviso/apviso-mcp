@@ -19,7 +19,7 @@ if (!apiKey?.startsWith("apvk_")) {
   process.exit(1);
 }
 
-const baseUrl = process.env.APVISO_API_URL || "https://app.apviso.com/api";
+const baseUrl = process.env.APVISO_API_URL || "https://apviso.com/api";
 const client = new ApvisoClient(apiKey, baseUrl);
 
 const server = new McpServer({
