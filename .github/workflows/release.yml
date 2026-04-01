@@ -21,10 +21,20 @@ jobs:
         with:
           node-version: 24
 
-      - name: Ensure npm supports trusted publishing
+      - name: Debug OIDC and auth
         run: |
-          npm --version
-          node --version
+          echo "npm version: $(npm --version)"
+          echo "node version: $(node --version)"
+          echo "OIDC URL set: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
+          echo "OIDC TOKEN set: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+yes}"
+          echo "--- .npmrc (project) ---"
+          cat .npmrc 2>/dev/null || echo "none"
+          echo "--- .npmrc (user) ---"
+          cat ~/.npmrc 2>/dev/null || echo "none"
+          echo "--- npm config list ---"
+          npm config list
+          echo "--- npm whoami (expect failure) ---"
+          npm whoami 2>&1 || true
 
       - run: npm ci
       - run: npm run build
