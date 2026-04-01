@@ -21,25 +21,15 @@ jobs:
         with:
           node-version: 24
 
-      - name: Debug OIDC and auth
-        run: |
-          echo "npm version: $(npm --version)"
-          echo "node version: $(node --version)"
-          echo "OIDC URL set: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
-          echo "OIDC TOKEN set: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+yes}"
-          echo "--- .npmrc (project) ---"
-          cat .npmrc 2>/dev/null || echo "none"
-          echo "--- .npmrc (user) ---"
-          cat ~/.npmrc 2>/dev/null || echo "none"
-          echo "--- npm config list ---"
-          npm config list
-          echo "--- npm whoami (expect failure) ---"
-          npm whoami 2>&1 || true
-
       - run: npm ci
       - run: npm run build
 
       - name: Set version from release tag
         run: npm version "${GITHUB_REF_NAME#v}" --no-git-tag-version
 
-      - run: npm publish --provenance --access public
+      - name: Publish to npm
+        run: npm publish --provenance --access public 2>&1 || true
+
+      - name: Show npm debug log on failure
+        if: always()
+        run: cat /home/runner/.npm/_logs/*-debug-*.log 2>/dev/null | tail -100 || echo "no log"
